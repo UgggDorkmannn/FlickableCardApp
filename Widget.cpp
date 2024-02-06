@@ -3,11 +3,8 @@
 #include "FlippableCard.h"
 #include <QLabel>
 #include <QCheckBox>
-Widget::Widget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Widget)
+Widget::Widget(QWidget *parent) :QWidget(parent)
 {
-    ui->setupUi(this);
     setStyleSheet("background:darkgray");
 
     setFixedSize(320,320);
@@ -50,5 +47,4 @@ Widget::Widget(QWidget *parent) :
 
 Widget::~Widget()
 {
-    delete ui;
 }

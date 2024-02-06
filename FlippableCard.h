@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QVBoxLayout>
+#include <QPropertyAnimation>
 class NeatButton:public QWidget{
     Q_OBJECT
 public:
@@ -26,15 +27,20 @@ signals:
 class FlippableCard : public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(qreal flipAngle READ getFlipAngle WRITE setFlipAngle)
 public:
     explicit FlippableCard(const QString & cardName,QWidget *parent = nullptr);
 
     void setFrontContent(QWidget* w);
     void setBackContent(QWidget* w);
 
-signals:
-
-public slots:
+    qreal getFlipAngle()const{return mFlipAngle;}
+    void setFlipAngle(qreal a){mFlipAngle = a;}
+protected:
+    //void paintEvent(QPaintEvent*);
+private:
+    void flipToBackpage();
+    void flipToFrontpage();
 
 private:
     QWidget* mFront;
@@ -42,6 +48,9 @@ private:
     QVBoxLayout * mFrontLayout;
     QVBoxLayout * mBackLayout;
     QString mCardName;
+    QPropertyAnimation* mFlipAnim;
+    qreal mFlipAngle;
+    int mCardIndex;
 };
 
 #endif // FLIPPABLECARD_H

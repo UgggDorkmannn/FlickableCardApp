@@ -3,9 +3,6 @@
 
 #include <QWidget>
 
-namespace Ui {
-class Widget;
-}
 
 class Widget : public QWidget
 {
@@ -14,9 +11,6 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
-
-private:
-    Ui::Widget *ui;
 };
 
 #endif // WIDGET_H
