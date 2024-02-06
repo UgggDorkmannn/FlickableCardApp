@@ -34,13 +34,12 @@ public:
     void setFrontContent(QWidget* w);
     void setBackContent(QWidget* w);
 
-    qreal getFlipAngle()const{return mFlipAngle;}
-    void setFlipAngle(qreal a){mFlipAngle = a;}
+    qreal getFlipAngle()const;
+    void setFlipAngle(qreal a);
 protected:
     void paintEvent(QPaintEvent*);
 private:
-    void flipToBackpage();
-    void flipToFrontpage();
+    void flip(QWidget* toHide,QWidget* toShow);
 
 private:
     QWidget* mFront;
@@ -48,9 +47,11 @@ private:
     QVBoxLayout * mFrontLayout;
     QVBoxLayout * mBackLayout;
     QString mCardName;
-    QPropertyAnimation* mFlipAnim;
     qreal mFlipAngle;
     int mCardIndex;
+    bool mAnimRunning;
+    QPixmap mToHidePixmap;
+    QPixmap mToShowPixmap;
 };
 
 #endif // FLIPPABLECARD_H

@@ -5,13 +5,14 @@
 #include <QCheckBox>
 Widget::Widget(QWidget *parent) :QWidget(parent)
 {
-    setObjectName("idCardContainer");
-    setStyleSheet("#idCardContainer{background:darkgray}");
+    QPalette pa;
+    pa.setColor(QPalette::Background,QColor("darkgray"));
+    setPalette(pa);
 
     setFixedSize(320,320);
-    FlippableCard * card1 = new FlippableCard("最冷天气",this);
+    FlippableCard * card1 = new FlippableCard("最冷天气" , this);
     FlippableCard * card2 = new FlippableCard("西方财富" , this);
-    FlippableCard * card3 = new FlippableCard("合金浏览器" , this);
+    FlippableCard * card3 = new FlippableCard("部落冲突" , this);
     FlippableCard * card4 = new FlippableCard("宜家家居" , this);
 
     card1->move(8,8);
@@ -31,19 +32,23 @@ Widget::Widget(QWidget *parent) :QWidget(parent)
         layout->addStretch();
         card1->setFrontContent(front);
 
+
         auto* back = new QWidget;
         auto* ad = new QCheckBox("关闭广告");
+        const QString cbstyle("QCheckBox { background-color: transparent; }");
+        ad->setStyleSheet(cbstyle);
         auto* coat = new QCheckBox("显示穿衣指数");
+        coat->setStyleSheet(cbstyle);
         auto* privacy = new QCheckBox("上传个人信息");
+        privacy->setStyleSheet(cbstyle);
+
         auto* layoutBack = new QVBoxLayout(back);
         layoutBack->addWidget(ad);
         layoutBack->addWidget(coat);
         layoutBack->addWidget(privacy);
+        layoutBack->addStretch();
         card1->setBackContent(back);
-
-
     }
-
 }
 
 Widget::~Widget()
