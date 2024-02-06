@@ -37,7 +37,7 @@ public:
     qreal getFlipAngle()const{return mFlipAngle;}
     void setFlipAngle(qreal a){mFlipAngle = a;}
 protected:
-    //void paintEvent(QPaintEvent*);
+    void paintEvent(QPaintEvent*);
 private:
     void flipToBackpage();
     void flipToFrontpage();

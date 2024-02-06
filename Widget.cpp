@@ -5,7 +5,8 @@
 #include <QCheckBox>
 Widget::Widget(QWidget *parent) :QWidget(parent)
 {
-    setStyleSheet("background:darkgray");
+    setObjectName("idCardContainer");
+    setStyleSheet("#idCardContainer{background:darkgray}");
 
     setFixedSize(320,320);
     FlippableCard * card1 = new FlippableCard("最冷天气",this);

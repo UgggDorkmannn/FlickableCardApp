@@ -11,7 +11,7 @@ FlippableCard::FlippableCard(const QString & cardName,QWidget *parent) :
 
     static int cardIndex = 0;
     mCardIndex = cardIndex++ % cardColorList.size();
-    setStyleSheet("border-radius:8px; background:" + cardColorList[mCardIndex] + ";");
+    //setStyleSheet("border-radius:8px; background:" + cardColorList[mCardIndex] + ";");
     //init font page
     mFront = new QWidget(this);
     mFront->setFixedSize(this->size());
@@ -56,16 +56,15 @@ void FlippableCard::flipToBackpage(){
 void FlippableCard::flipToFrontpage(){
 
 }
-//void FlippableCard::paintEvent(QPaintEvent* e){
-//    if(!e) return;
-//    QPainter painter(this);
-//    QColor background(cardColorList[mCardIndex]);
-//    painter.setPen(Qt::NoPen);
-//    painter.setBrush(background);
-//    painter.drawRoundedRect(rect(),8,8);
-//    qDebug() << "in paintEvent,background:" << rect();
-//    QWidget::paintEvent(e);
-//}
+void FlippableCard::paintEvent(QPaintEvent* e){
+    if(!e) return;
+    QPainter painter(this);
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(QColor(cardColorList[mCardIndex]));
+    painter.drawRoundedRect(rect(),8,8);
+
+    QWidget::paintEvent(e);
+}
 
 NeatButton::NeatButton(const QString & str, QWidget* parent):
     QWidget(parent),mText(str),mIsHovering(false)
